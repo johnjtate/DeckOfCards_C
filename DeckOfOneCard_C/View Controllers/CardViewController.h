@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  CardViewController.h
 //  DeckOfOneCard_C
 //
 //  Created by John Tate on 9/11/18.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface CardViewController : UIViewController
 
 @end
-
