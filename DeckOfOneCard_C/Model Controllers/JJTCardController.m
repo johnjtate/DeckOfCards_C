@@ -8,7 +8,7 @@
 
 #import "JJTCardController.h"
 
-static NSString * const baseURLString = @"https://deckofcardsapi.com/api/deck";
+static NSString * const baseURLString = @"https://deckofcardsapi.com/api/deck/new/draw";
 
 @implementation JJTCardController
 
@@ -18,15 +18,16 @@ static NSString * const baseURLString = @"https://deckofcardsapi.com/api/deck";
     NSString *cardCount = [@(numberOfCards) stringValue];
     
     // 1) Construct URL/URL Request
-    NSURL *baseURL = [NSURL URLWithString:baseURLString];
-    NSURL *newURL = [[baseURL URLByAppendingPathComponent:@"new"] URLByAppendingPathComponent:@"draw"];
-    NSURLRequest *request = [NSURLRequest requestWithURL:newURL];
+    NSURLComponents *components = [NSURLComponents componentsWithString:baseURLString];
+    NSURLQueryItem *count = [NSURLQueryItem queryItemWithName:@"count" value:cardCount];
+    components.queryItems = @[count];
+    NSURL *requestURL = components.URL;
     
     // print the URL to the console
-    NSLog([newURL absoluteString]);
+    NSLog([requestURL absoluteString]);
     
     // 2) URLSession.shared.dataTask with completion
-    [[[NSURLSession sharedSession] dataTaskWithRequest:newURL completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+    [[[NSURLSession sharedSession] dataTaskWithURL:requestURL completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
        
         if (error) {
             NSLog(@"There was an error in %s: %@, %@", __PRETTY_FUNCTION__ , error, error.localizedDescription);
@@ -59,9 +60,10 @@ static NSString * const baseURLString = @"https://deckofcardsapi.com/api/deck";
     NSURL *imageURL = [NSURL URLWithString:card.image];
     
     // print the image URL to the console
-    NSLog([imageURL absoluteString]);
+    NSLog(@"%@", [imageURL absoluteString]);
     
-    [[[NSURLSession sharedSession] dataTaskWithRequest:imageURL completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+    
+    [[[NSURLSession sharedSession] dataTaskWithURL:imageURL completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         
         if (error) {
             NSLog(@"There was an error in %s: %@, %@", __PRETTY_FUNCTION__ , error, error.localizedDescription);

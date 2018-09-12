@@ -29,11 +29,15 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VsT-oZ-Cco">
-                                        <rect key="frame" x="30" y="30.5" width="240" height="396.5"/>
+                                        <rect key="frame" x="30" y="30.5" width="240" height="390.5"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qvs-He-iuT">
-                                        <rect key="frame" x="127" y="437" width="46" height="30"/>
-                                        <state key="normal" title="Button"/>
+                                        <rect key="frame" x="127" y="431" width="46" height="36"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <state key="normal" title="Draw"/>
+                                        <connections>
+                                            <action selector="drawButtonTapped:" destination="CPR-lp-jsd" eventType="touchUpInside" id="Cdg-Ue-afc"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -47,6 +51,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="qMv-s4-uyW"/>
                     </view>
+                    <connections>
+                        <outlet property="cardImageView" destination="VsT-oZ-Cco" id="T1Q-K1-t34"/>
+                        <outlet property="suitLabel" destination="IOJ-4N-iF5" id="lKY-HR-IvV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NP9-p0-mLt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "JJTCardController.h"
+#import "JJTCard.h"
 
 @interface CardViewController : UIViewController
+
+-(void)updateViews;
 
 @end
